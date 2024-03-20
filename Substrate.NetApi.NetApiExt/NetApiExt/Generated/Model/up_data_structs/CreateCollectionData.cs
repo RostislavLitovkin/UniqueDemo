@@ -56,7 +56,7 @@ namespace Substrate.NetApi.NetApiExt.Generated.Model.up_data_structs
         /// <summary>
         /// >> token_property_permissions
         /// </summary>
-        public Substrate.NetApi.NetApiExt.Generated.Model.bounded_collections.bounded_vec.BoundedVecT11 TokenPropertyPermissions { get; set; };
+        public Substrate.NetApi.NetApiExt.Generated.Model.bounded_collections.bounded_vec.BoundedVecT11 TokenPropertyPermissions { get; set; }
         /// <summary>
         /// >> properties
         /// </summary>

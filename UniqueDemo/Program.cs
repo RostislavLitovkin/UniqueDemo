@@ -41,7 +41,7 @@ Account account = Account.Build(
 var accountId = new AccountId32();
 accountId.Create(Utils.GetPublicKeyFrom(account.Value));
 
-var accountInfo = await client.SystemStorage.Account(accountId, null, CancellationToken.None);
+var accountInfo = await client.SystemStorage.Account(accountId, "", CancellationToken.None);
 
 //Console.WriteLine(accountInfo.Data.Free);
 
@@ -54,33 +54,30 @@ createCollectionData.Mode = enumCollectionMode;
 
 var name = new BoundedVecT8();
 
-int p = 0;
-
-var nameVec = new BaseVec<U16>();
-nameVec.Create(new U16[] { new U16(97) });
+var nameVec = new BaseVec<U16>(new U16[] { new U16(97) });
 
 name.Value = nameVec;
 
-var descriptionVec = new BaseVec<U16>();
-descriptionVec.Create(new U16[] { new U16(98) });
-
-
 var description = new BoundedVecT9();
 
-description.Value = descriptionVec;
+// You can also shorten it like this :)
+description.Value = new BaseVec<U16>(new U16[] { new U16(98) });
 
 var tokenPrefix = new BoundedVecT10();
 
-BaseVec<U8> message = new BaseVec<U8>();
-message.Create(new U8[] { new U8(99) });
+BaseVec<U8> tokenPrefixVec = new BaseVec<U8>(new U8[] { new U8(99) });
 
-tokenPrefix.Value = message;
+tokenPrefix.Value = tokenPrefixVec;
 
 createCollectionData.Name = name;
 
 createCollectionData.Description = description;
 
 createCollectionData.TokenPrefix = tokenPrefix;
+
+var tokenPropertyPermissions = new BoundedVecT11();
+
+tokenPropertyPermissions.Value = new BaseVec<PropertyKeyPermission>();
 
 Method method = UniqueCalls.CreateCollectionEx(createCollectionData);
 
